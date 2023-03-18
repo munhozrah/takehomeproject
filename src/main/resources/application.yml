@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: 
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+  h2:
+    console.enabled: true
+  security:
+    basic:
+        enabled: false
+app:
+    jwtCookieName: takehome
+    jwtSecret: keyToGenerateJWTHere
+    jwtExpirationMs: 900000
