@@ -21,7 +21,7 @@ public class StudentRegistrationInteractor implements StudentInputBoundary {
     private final StudentFactory studentFactory;        
         @Override
         public StudentDTO register(StudentDTO requestModel) throws StudentRegistrationException {
-            if (studentDsGateway.existsByEmail(requestModel.getEmail()))
+            if (studentDsGateway.existsByEmail(requestModel.getEmail()) > 0)
                 throw new StudentRegistrationException("Email already in use.");
             var student = studentFactory.create(
                 UUID.randomUUID(), 

@@ -11,11 +11,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rafael.takehomeproject.adapters.controllers.userregistration.UserRegistrationController;
+import com.rafael.takehomeproject.adapters.controllers.user.UserController;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserInputBoundary;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserRequestDTO;
 
-@WebMvcTest(controllers = UserRegistrationController.class)
+@WebMvcTest(controllers = UserController.class)
 @AutoConfigureMockMvc(addFilters = false)
 public class UserRegistrationControllerTest {
     @Autowired
@@ -29,7 +29,7 @@ public class UserRegistrationControllerTest {
 
   @Test
   void givenValidInputThenReturns200() throws Exception {
-    var userRequestDTO = new UserRequestDTO("rafael.munhoz", new char[16]);
+    var userRequestDTO = new UserRequestDTO("rafael.munhoz", new char[16], null);
     mockMvc.perform(post("/user")
         .contentType("application/json")
         .content(objectMapper.writeValueAsString(userRequestDTO)))
@@ -38,7 +38,7 @@ public class UserRegistrationControllerTest {
 
   @Test
   void givenInvalidInputThenReturns400() throws Exception {
-    var userRequestDTO = new UserRequestDTO("rafael.munhoz", null);
+    var userRequestDTO = new UserRequestDTO("rafael.munhoz", null, null);
     mockMvc.perform(post("/user")
         .contentType("application/json")
         .content(objectMapper.writeValueAsString(userRequestDTO)))

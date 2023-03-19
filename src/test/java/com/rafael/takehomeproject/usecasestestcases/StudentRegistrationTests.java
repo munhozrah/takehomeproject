@@ -28,14 +28,15 @@ public class StudentRegistrationTests {
     @Test
     void givenExistingUserThrowStudentRegistrationException() {
         var studentDTO = new StudentDTO(UUID.randomUUID(), "Rafael", "Munhoz", LocalDateTime.now(), "143 SAINT PATRICK ST", "test@mail.com", "+5551996023525");
-        when (studentDsGateway.existsByEmail(studentDTO.getEmail())).thenReturn(true);
+        when (studentDsGateway.existsByEmail(studentDTO.getEmail())).thenReturn(1);
         assertThrows(StudentRegistrationException.class, () -> studentInputBoundary.register(studentDTO), "Email already in use.");
         verify(studentDsGateway, times(1)).existsByEmail(studentDTO.getEmail());
 	}
+    
     @Test
     void givenNonExistingUserAndAgeUnder16ThrowStudentRegistrationException() {
         var studentDTO = new StudentDTO(UUID.randomUUID(), "Rafael", "Munhoz", LocalDateTime.now(), "143 SAINT PATRICK ST", "test@mail.com", "+5551996023525");
-        when (studentDsGateway.existsByEmail(studentDTO.getEmail())).thenReturn(false);
+        when (studentDsGateway.existsByEmail(studentDTO.getEmail())).thenReturn(0);
         when (studentFactory.create(any(), any(), any(), any(), any(), any(), any(), any()))
         .thenReturn(new StudentImpl(studentDTO.getId(), studentDTO.getFirstName() + "." + studentDTO.getLastName(), studentDTO.getFirstName(), studentDTO.getLastName(), studentDTO.getDtOfBirth(), studentDTO.getAddress(), studentDTO.getEmail(), studentDTO.getPhoneNumber()));
         assertThrows(StudentRegistrationException.class, () -> studentInputBoundary.register(studentDTO), "Students should be 16 or older to register.");

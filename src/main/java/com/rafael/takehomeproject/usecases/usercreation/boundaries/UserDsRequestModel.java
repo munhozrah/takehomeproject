@@ -8,7 +8,8 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class UserDsRequestModel {
-    String name;
+    String username;
     String password;
     LocalDateTime dtCreation;
+    String role;
 }

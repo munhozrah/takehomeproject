@@ -1,7 +1,7 @@
 package com.rafael.takehomeproject.usecases.studentregistration.boundaries;
 
 public interface StudentRegistrationDsGateway {
-    boolean existsByEmail(String email);
-    boolean save(StudentDsRequestModel requestModel);
+    int existsByEmail(String email);
+    void save(StudentDsRequestModel requestModel);
 }
 

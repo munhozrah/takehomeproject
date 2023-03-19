@@ -7,12 +7,11 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
+    hibernate:
+      ddl-auto: none
+
   h2:
     console.enabled: true
   security:
     basic:
         enabled: false
-app:
-    jwtCookieName: takehome
-    jwtSecret: keyToGenerateJWTHere
-    jwtExpirationMs: 900000

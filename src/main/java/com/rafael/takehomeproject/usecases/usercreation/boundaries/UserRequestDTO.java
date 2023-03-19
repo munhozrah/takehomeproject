@@ -11,4 +11,6 @@ public class UserRequestDTO {
     String username;
     @NotNull
     char[] password;
+    @NotNull
+    String role;
 }

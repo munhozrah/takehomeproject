@@ -3,6 +3,9 @@ package com.rafael.takehomeproject.domain.students;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class StudentFactoryImpl implements StudentFactory {
 
     @Override

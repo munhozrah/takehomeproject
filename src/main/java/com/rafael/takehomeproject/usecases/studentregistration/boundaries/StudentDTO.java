@@ -10,7 +10,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class StudentDTO {
-    @NotNull
     UUID id;
     @NotNull
     String firstName; 

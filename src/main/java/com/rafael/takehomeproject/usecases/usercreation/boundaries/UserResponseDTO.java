@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class UserResponseDTO {
     String username;
-    String creationTime;
+    String role;
 }
