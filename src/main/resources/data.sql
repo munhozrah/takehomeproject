@@ -72,6 +72,8 @@ INSERT INTO students_tasks (
         30
     );
 
-INSERT INTO users(username, passwd, dt_creation) VALUES ('john.black', '1', '2023-03-17');
+INSERT INTO users(username, passwd, dt_creation) VALUES ('john.black', '1234', '2023-03-17');
 
 INSERT INTO user_roles(username, role_name) VALUES ('john.black', 'ADMIN');
+
+COMMIT;
