@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rafael.takehomeproject.adapters.controllers.user.UserController;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserInputBoundary;
+import com.rafael.takehomeproject.usecases.login.boundaries.UserLoginInputBoundary;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserRequestDTO;
 
 @WebMvcTest(controllers = UserController.class)
@@ -26,6 +27,9 @@ public class UserRegistrationControllerTest {
 
     @MockBean
     private UserInputBoundary userInputBoundary;
+
+    @MockBean
+    private UserLoginInputBoundary UserLoginInputBoundary;
 
   @Test
   void givenValidInputThenReturns200() throws Exception {

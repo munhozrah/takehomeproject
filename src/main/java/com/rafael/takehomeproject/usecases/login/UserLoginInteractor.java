@@ -5,18 +5,16 @@ import javax.security.auth.login.LoginException;
 import org.springframework.stereotype.Service;
 
 import com.rafael.takehomeproject.usecases.login.boundaries.UserLoginDsRequestModel;
-import com.rafael.takehomeproject.usecases.login.boundaries.UserLoginInputBoudary;
+import com.rafael.takehomeproject.usecases.login.boundaries.UserLoginInputBoundary;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserDsGateway;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserRequestDTO;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserResponseDTO;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
-@Slf4j
 @Service
-public class UserLoginInteractor implements UserLoginInputBoudary {
+public class UserLoginInteractor implements UserLoginInputBoundary {
     private final UserDsGateway userDsGateway;
 
     @Override
