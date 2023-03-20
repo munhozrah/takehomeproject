@@ -26,4 +26,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
   public final ResponseEntity<String> handleAllExceptions(LoginException ex, WebRequest request) {
     return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
   }
+  @ExceptionHandler({ Exception.class })
+  public final ResponseEntity<String> handleAllExceptions(Exception ex, WebRequest request) {
+    return new ResponseEntity<>("Something unexpected happened and we don't know how to deal with it yet", HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 }

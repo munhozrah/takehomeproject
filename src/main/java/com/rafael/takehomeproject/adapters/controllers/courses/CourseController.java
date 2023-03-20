@@ -45,6 +45,7 @@ public class CourseController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<UUID> delete(@PathVariable UUID id) {
+        this.coursesInputBoundary.delete(id);
         return ResponseEntity.ok(id);
     }
 }
