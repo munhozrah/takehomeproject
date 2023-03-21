@@ -10,4 +10,5 @@ import lombok.Data;
 public class CourseDTO {
     UUID id;
     String courseName;
+    int duration;
 }

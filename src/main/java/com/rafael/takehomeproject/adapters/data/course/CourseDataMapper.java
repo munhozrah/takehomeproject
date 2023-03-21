@@ -22,4 +22,6 @@ public class CourseDataMapper {
       UUID id;
       @Column(name = "course_name")
       String courseName;
+      @Column(name = "duration")
+      int duration;
 }

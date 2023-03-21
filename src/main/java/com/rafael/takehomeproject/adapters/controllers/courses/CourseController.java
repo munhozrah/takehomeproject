@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rafael.takehomeproject.usecases.courses.CourseCreationException;
 import com.rafael.takehomeproject.usecases.courses.boundaries.CourseDTO;
 import com.rafael.takehomeproject.usecases.courses.boundaries.CoursesInputBoundary;
 
@@ -34,12 +35,12 @@ public class CourseController {
     }
 
     @PutMapping
-    public ResponseEntity<CourseDTO> update(@RequestBody CourseDTO courseDTO) {
+    public ResponseEntity<CourseDTO> update(@RequestBody CourseDTO courseDTO) throws CourseCreationException {
         return ResponseEntity.ok(this.coursesInputBoundary.save(courseDTO));
     }
 
     @PostMapping
-    public ResponseEntity<CourseDTO> insert(@RequestBody CourseDTO courseDTO) {
+    public ResponseEntity<CourseDTO> insert(@RequestBody CourseDTO courseDTO) throws CourseCreationException {
         return ResponseEntity.ok(this.coursesInputBoundary.save(courseDTO));
     }
 

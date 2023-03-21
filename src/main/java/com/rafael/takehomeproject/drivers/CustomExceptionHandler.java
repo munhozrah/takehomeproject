@@ -10,12 +10,17 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.rafael.takehomeproject.usecases.usercreation.UserRegistrationException;
+import com.rafael.takehomeproject.usecases.courses.CourseCreationException;
 import com.rafael.takehomeproject.usecases.studentregistration.StudentRegistrationException;
 
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
-  @ExceptionHandler( UserRegistrationException.class)
+  @ExceptionHandler( UserRegistrationException.class )
   public final ResponseEntity<String> handleAllExceptions(UserRegistrationException ex, WebRequest request) {
+    return new ResponseEntity<>(ex.getErrorMessage(), HttpStatus.BAD_REQUEST);
+  }
+  @ExceptionHandler( CourseCreationException.class )
+  public final ResponseEntity<String> handleAllExceptions(CourseCreationException ex, WebRequest request) {
     return new ResponseEntity<>(ex.getErrorMessage(), HttpStatus.BAD_REQUEST);
   }
   @ExceptionHandler( StudentRegistrationException.class)

@@ -17,10 +17,12 @@ INSERT INTO students (
 
 INSERT INTO courses (
         id, 
-        course_name)
+        course_name,
+        duration)
      VALUES (
         'd0ce3a0a-86f9-49f7-a609-65f90ff78b3e',
-        'Computer Science'
+        'Data Structure',
+        6
      );
 
 INSERT INTO registrations (

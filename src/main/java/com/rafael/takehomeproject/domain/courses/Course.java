@@ -8,6 +8,12 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class Course {
+    public static final int MAX_COURSE_DURATION_SIX_MONTHS = 6;
     UUID id;
     String courseName;
+    int duration;
+
+    public boolean isCourseDurationValid() {
+        return this.duration < MAX_COURSE_DURATION_SIX_MONTHS;
+    }
 }

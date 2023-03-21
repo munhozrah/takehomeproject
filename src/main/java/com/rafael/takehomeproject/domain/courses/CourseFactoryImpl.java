@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class CourseFactoryImpl implements CourseFactory {
 
     @Override
-    public Course create(UUID id, String courseName) {
-        return new Course(id, courseName);
+    public Course create(UUID id, String courseName, int duration) {
+        return new Course(id, courseName, duration);
     }   
 }

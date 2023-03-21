@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS students (
 
 CREATE TABLE IF NOT EXISTS courses (
     id UUID PRIMARY KEY,
-    course_name VARCHAR(50) NOT NULL
+    course_name VARCHAR(50) NOT NULL,
+    duration INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS registrations (
