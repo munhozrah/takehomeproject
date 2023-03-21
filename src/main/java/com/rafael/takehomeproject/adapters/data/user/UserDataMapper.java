@@ -32,6 +32,6 @@ public class UserDataMapper {
     LocalDateTime dtCreation;
     
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username", referencedColumnName = "username", nullable = true)
+    @JoinColumn(name = "username", referencedColumnName = "username", nullable = true, insertable = true, updatable = true)
     UserRoleDataMapper userRole;
 }

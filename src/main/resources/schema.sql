@@ -6,14 +6,28 @@ DROP TABLE IF EXISTS registrations;
 DROP TABLE IF EXISTS courses;
 DROP TABLE IF EXISTS students;
 
+CREATE TABLE IF NOT EXISTS users (
+    username VARCHAR(20) PRIMARY KEY,
+    passwd VARCHAR(50) NOT NULL,
+    dt_creation DATE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS user_roles (
+    username VARCHAR(20) PRIMARY KEY,
+    role_name VARCHAR(20) NOT NULL,
+    FOREIGN KEY (username) REFERENCES users(username)
+);
+
 CREATE TABLE IF NOT EXISTS students (
     id UUID PRIMARY KEY,
+    username VARCHAR(20) NOT NULL,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     dob DATE NOT NULL,
     addr VARCHAR(100) NOT NULL, 
     email VARCHAR(50) NOT NULL,
-    phone_number VARCHAR(15) NOT NULL
+    phone_number VARCHAR(21) NOT NULL,
+    FOREIGN KEY (username) REFERENCES users(username)
 );
 
 CREATE TABLE IF NOT EXISTS courses (
@@ -43,16 +57,4 @@ CREATE TABLE IF NOT EXISTS students_tasks (
     time_spent INT NOT NULL,
     FOREIGN KEY (registration_id) REFERENCES registrations(id),
     FOREIGN KEY (category_id) REFERENCES task_category(id)
-);
-
-CREATE TABLE IF NOT EXISTS users (
-    username VARCHAR(20) PRIMARY KEY,
-    passwd VARCHAR(50) NOT NULL,
-    dt_creation DATE NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS user_roles (
-    username VARCHAR(20) PRIMARY KEY,
-    role_name VARCHAR(20) NOT NULL,
-    FOREIGN KEY (username) REFERENCES users(username)
 );

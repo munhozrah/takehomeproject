@@ -12,6 +12,8 @@ import lombok.Data;
 public class StudentDTO {
     UUID id;
     @NotNull
+    String username;
+    @NotNull
     String firstName; 
     @NotNull
     String lastName;
@@ -23,4 +25,6 @@ public class StudentDTO {
     String email;
     @NotNull
     String phoneNumber;
+    @NotNull
+    char[] password;
 }

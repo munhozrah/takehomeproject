@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.rafael.takehomeproject.usecases.login.boundaries.UserLoginDsRequestModel;
 import com.rafael.takehomeproject.usecases.login.boundaries.UserLoginInputBoundary;
+import com.rafael.takehomeproject.usecases.studentregistration.boundaries.StudentDTO;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserDsGateway;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserRequestDTO;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserResponseDTO;

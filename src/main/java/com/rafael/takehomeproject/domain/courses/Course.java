@@ -14,6 +14,6 @@ public class Course {
     int duration;
 
     public boolean isCourseDurationValid() {
-        return this.duration < MAX_COURSE_DURATION_SIX_MONTHS;
+        return this.duration <= MAX_COURSE_DURATION_SIX_MONTHS;
     }
 }

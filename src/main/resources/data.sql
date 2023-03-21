@@ -1,3 +1,7 @@
+INSERT INTO users(username, passwd, dt_creation) VALUES ('john.black', '1234', '2023-03-17');
+
+INSERT INTO user_roles(username, role_name) VALUES ('john.black', 'ADMIN');
+
 INSERT INTO students (
         id, 
         first_name, 
@@ -5,7 +9,8 @@ INSERT INTO students (
         dob, 
         addr, 
         email, 
-        phone_number
+        phone_number,
+        username
      ) VALUES (
         'c75122b1-f0f6-4111-bf45-a03fa20e876a', 
         'JOHN', 
@@ -13,7 +18,8 @@ INSERT INTO students (
         '1987-12-18', 
         '2140 MAIN ST SUITE C, RED BLUFF, CA 96080, UNITED STATES', 
         'john.black@mail.com', 
-        '+1 530-527-4729');
+        '+1 530-527-4729',
+        'john.black');
 
 INSERT INTO courses (
         id, 
@@ -73,9 +79,3 @@ INSERT INTO students_tasks (
         1,
         30
     );
-
-INSERT INTO users(username, passwd, dt_creation) VALUES ('john.black', '1234', '2023-03-17');
-
-INSERT INTO user_roles(username, role_name) VALUES ('john.black', 'ADMIN');
-
-COMMIT;

@@ -41,6 +41,8 @@ public class SecurityConfig {
                 .permitAll()
                 .requestMatchers("/user/**")
                 .permitAll()
+                .requestMatchers("/student/**") //TODO gives access to other stuff
+                .permitAll()
                 .requestMatchers(HttpMethod.OPTIONS, "/*")
                 .permitAll()
                 .anyRequest()

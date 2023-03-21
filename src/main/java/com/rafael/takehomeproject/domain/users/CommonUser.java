@@ -11,6 +11,6 @@ public class CommonUser implements User{
     
     @Override
     public boolean passwordIsValid() {
-        return this.password != null && this.password.length >= 16;
+        return this.password != null && this.password.length >= User.MINIMUM_LENGTH_PASSWD;
     }
 }

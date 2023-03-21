@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
 
+import com.rafael.takehomeproject.domain.users.User;
 import com.rafael.takehomeproject.domain.users.UserFactory;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserDsRequestModel;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserInputBoundary;
@@ -27,7 +28,7 @@ public class UserRegistrationInteractor implements UserInputBoundary{
             throw new UserRegistrationException("User already exists.");
         var user = userFactory.create(requestModel.getUsername(), requestModel.getPassword());
         if (!user.passwordIsValid())
-            throw new UserRegistrationException("User password must have more than 16 characters.");
+            throw new UserRegistrationException(String.format("User password must have more than %d characters.", User.MINIMUM_LENGTH_PASSWD));
         var now = LocalDateTime.now();
         var userDsModel = new UserDsRequestModel(user.getUsername(), encryptPassord(user.getPassword()), now, requestModel.getRole());
 

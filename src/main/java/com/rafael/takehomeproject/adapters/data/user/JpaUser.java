@@ -3,6 +3,7 @@ package com.rafael.takehomeproject.adapters.data.user;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rafael.takehomeproject.usecases.login.boundaries.UserLoginDsRequestModel;
 import com.rafael.takehomeproject.usecases.usercreation.boundaries.UserDsRequestModel;
@@ -14,6 +15,7 @@ import lombok.AllArgsConstructor;
 @Service
 public class JpaUser implements UserDsGateway {
     private final JpaUserRepository jpaUserRepository;
+    private final JpaUserRoleRepository jpaUserRoleRepository;
 
     @Override
     public boolean existsByUsername(String username) {
@@ -21,9 +23,12 @@ public class JpaUser implements UserDsGateway {
     }
 
     @Override
+    @Transactional
     public void save(UserDsRequestModel requestModel) {
-        var userDataMapper = new UserDataMapper(requestModel.getUsername(), requestModel.getPassword(), LocalDateTime.now(), new UserRoleDataMapper(requestModel.getUsername(), requestModel.getRole()));
-        jpaUserRepository.save(userDataMapper);
+        var userDataMapper = new UserDataMapper(requestModel.getUsername(), requestModel.getPassword(), LocalDateTime.now(), null);
+        this.jpaUserRepository.save(userDataMapper);
+        var userRoleDataMapper = new UserRoleDataMapper(requestModel.getUsername(), requestModel.getRole());
+        this.jpaUserRoleRepository.save(userRoleDataMapper);
     }
 
     @Override

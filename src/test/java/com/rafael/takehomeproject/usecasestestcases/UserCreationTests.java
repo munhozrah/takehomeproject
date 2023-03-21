@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.Test;
 
 import com.rafael.takehomeproject.domain.users.CommonUser;
+import com.rafael.takehomeproject.domain.users.User;
 import com.rafael.takehomeproject.domain.users.UserFactory;
 import com.rafael.takehomeproject.usecases.usercreation.UserRegistrationException;
 import com.rafael.takehomeproject.usecases.usercreation.UserRegistrationInteractor;
@@ -25,7 +26,7 @@ public class UserCreationTests {
 
     @Test
     void givenExistingUserAndAnyPassordThenInvokePrepareFailView() {
-        var userRequestDTO = new UserRequestDTO("Test", new char[16], null);
+        var userRequestDTO = new UserRequestDTO("Test", new char[User.MINIMUM_LENGTH_PASSWD], null);
         when (userDsGateway.existsByUsername(userRequestDTO.getUsername())).thenReturn(true);
         when (userFactory.create(userRequestDTO.getUsername(), userRequestDTO.getPassword())).thenReturn(new CommonUser(userRequestDTO.getUsername(), userRequestDTO.getPassword()));
         assertThrows(UserRegistrationException.class, () -> userInputBoundary.create(userRequestDTO), "User already exists.");
@@ -34,17 +35,17 @@ public class UserCreationTests {
 
     @Test
     void givenNonExistingUserAndWeakPassordThenInvokePrepareFailView() {
-        var randomPassord = new char[15];
+        var randomPassord = new char[User.MINIMUM_LENGTH_PASSWD - 1];
         var userRequestDTO = new UserRequestDTO("Test", randomPassord, null);
         when (userDsGateway.existsByUsername(userRequestDTO.getUsername())).thenReturn(false);
         when (userFactory.create(userRequestDTO.getUsername(), userRequestDTO.getPassword())).thenReturn(new CommonUser(userRequestDTO.getUsername(), userRequestDTO.getPassword()));
-        assertThrows(UserRegistrationException.class, () -> userInputBoundary.create(userRequestDTO), "User password must have more than 16 characters.");
+        assertThrows(UserRegistrationException.class, () -> userInputBoundary.create(userRequestDTO), String.format("User password must have more than %d characters.", User.MINIMUM_LENGTH_PASSWD));
         verify(userDsGateway, times(1)).existsByUsername(userRequestDTO.getUsername());
 	}
 
     @Test
     void givenTestUserAndValidPassordThenSaveItAndInvokePrepareSuccessView() throws UserRegistrationException {
-        var userRequestDTO = new UserRequestDTO("Test", new char[16], null);
+        var userRequestDTO = new UserRequestDTO("Test", new char[User.MINIMUM_LENGTH_PASSWD], null);
         when (userDsGateway.existsByUsername(userRequestDTO.getUsername())).thenReturn(false);
         when (userFactory.create(userRequestDTO.getUsername(), userRequestDTO.getPassword())).thenReturn(new CommonUser(userRequestDTO.getUsername(), userRequestDTO.getPassword()));
         var userResponseDTO = userInputBoundary.create(userRequestDTO);
